@@ -6,15 +6,16 @@ The `perf_helper` library is designed for performance measurement using `perf`.
 
 - **PMU driver:**  armv8_pmuv3_0
 - **Compilers:**  
-  - GCC 14.1.0  
+  - GCC
+  - Gfortran
 
 ---
 
 ## Adding Section Measurements
 To measure performance within specific sections of your code:
-1. Use `initialize_perf` and `finalize_perf` outside parallel regions.
-2. Use `start_section_perf` and `stop_section_perf` within parallel regions.
-3. Specify the events to measure using the `perf_EVENTS` environment variable.
+1. Use `perf_initialize` and `perf_finalize` outside parallel regions.
+2. Use `perf_start_section` and `perf_stop_section` within parallel regions.
+3. Specify the events to measure using the `PERF_EVENTS` environment variable.
 
 **Note:** Section IDs range from `0` to `99`, and nested sections are supported.
 
