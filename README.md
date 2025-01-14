@@ -24,7 +24,7 @@ To measure performance within specific sections of your code:
 ## Code Examples
 
 ### Fortran90
-\`\`\`fortran
+\`\`\`c
 program main
   use perf_helper_mod
   implicit none
