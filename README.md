@@ -24,7 +24,7 @@ To measure performance within specific sections of your code:
 ## Code Examples
 
 ### Fortran90
-\`\`\`c
+```fortran
 program main
   use perf_helper_mod
   implicit none
@@ -49,10 +49,10 @@ program main
   !$omp end parallel
   call perf_finalize()
 end program main
-\`\`\`
+```
 
 ### C
-\`\`\`c
+```c
 #include "perf_helper.h"
 void compute(int n, double x);
 
@@ -74,37 +74,37 @@ int main() {
     }
     perf_finalize();
 }
-\`\`\`
+```
 
 ---
 
 ## Compilation
 
 ### For GCC
-\`\`\`bash
+```bash
 #!/bin/sh
 gcc -fopenmp -c main.c -o main.o
 gcc -fopenmp -c test.c -o test.o
 gcc -fopenmp main.o test.o -lperf_helper
-\`\`\`
+```
 
 ### For Fortran90
-\`\`\`bash
+```bash
 #!/bin/sh
 gfortran -fopenmp -c main.f90 -o main.o
 gfortran -fopenmp -c test.f90 -o test.o
 gfortran -fopenmp main.o test.o -lperf_helper
-\`\`\`
+```
 
 ---
 
 ## Execution
 
 1. Define performance events:
-    \`\`\`bash
+    ```bash
     export PERF_EVENTS="INST_SPEC,CPU_CYCLES,STALL_FRONTEND,STALL_BACKEND"
-    \`\`\`
+    ```
 2. Run the executable:
-    \`\`\`bash
+    ```bash
     ./a.out
-    \`\`\`
+    ```
