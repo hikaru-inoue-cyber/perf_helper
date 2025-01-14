@@ -7,7 +7,7 @@ The `perf_helper` library is designed for performance measurement using `perf`.
 - **PMU driver:**  armv8_pmuv3_0
 - **Compilers:**  
   - GCC
-  - Gfortran
+  - GFORTRAN
 
 ---
 
@@ -22,6 +22,31 @@ To measure performance within specific sections of your code:
 ---
 
 ## Code Examples
+
+### C
+```c
+#include "perf_helper.h"
+void compute(int n, double x);
+
+int main() {
+    int n = 1000000;
+    double x;
+
+    perf_initialize();
+    #pragma omp parallel
+    {
+        perf_start_section(0);
+        perf_start_section(1);
+        compute(n, x);
+        perf_stop_section(1);
+        perf_start_section(2);
+        compute(n, x);
+        perf_stop_section(2);
+        perf_stop_section(0);
+    }
+    perf_finalize();
+}
+```
 
 ### Fortran90
 ```fortran
@@ -49,31 +74,6 @@ program main
   !$omp end parallel
   call perf_finalize()
 end program main
-```
-
-### C
-```c
-#include "perf_helper.h"
-void compute(int n, double x);
-
-int main() {
-    int n = 1000000;
-    double x;
-
-    perf_initialize();
-    #pragma omp parallel
-    {
-        perf_start_section(0);
-        perf_start_section(1);
-        compute(n, x);
-        perf_stop_section(1);
-        perf_start_section(2);
-        compute(n, x);
-        perf_stop_section(2);
-        perf_stop_section(0);
-    }
-    perf_finalize();
-}
 ```
 
 ---
