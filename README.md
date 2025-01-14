@@ -1,5 +1,5 @@
 
-# Performance Evaluation Library Using perf for ARM Processors
+# Performance Evaluation Library Using Linux perf for ARM Processors
 
 ## Introduction
 The `perf_helper` library is designed for performance measurement using `perf`. 
